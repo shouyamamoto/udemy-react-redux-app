@@ -12,22 +12,34 @@ import React from 'react'
 // }
 
 const App = () => {
+  const userArry = [
+    {name: 'taro', age: 12}, 
+    {name: 'hanako', age: 15}, 
+    {name: 'tkenn'}, 
+  ]
   return (
     <>
-    <Cat />
-    <Cat />
-    <Cat />
-    <Cat />
+    {
+      userArry.map((profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index}/>
+      })
+    }
     </>
   )
 }
 
-const Cat = () => {
+const User = (props) => {
+  const{name, age}  = props
   return(
     <React.Fragment>
-      <p>Meow!!</p>
+      <p>Hi!! I'm {name}</p>
+      <p>my age {age}</p>
     </React.Fragment>
   )
+}
+
+User.defaultProps = {
+  age: 1
 }
 
 export default App;
