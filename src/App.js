@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 
 // class App extends React.Component {
 //   render() {
@@ -12,34 +11,37 @@ import PropTypes from 'prop-types'
 //   }
 // }
 
-const App = () => {
-  const userArry = [
-    {name: 'taro', age: 12}, 
-    {name: 'hanako', age: 15}
-  ]
-  return (
-    <>
-    {
-      userArry.map((profile, index) => {
-        return <User name={profile.name} age={profile.age} key={index}/>
-      })
+const App = () => (<Counter></Counter>)
+
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      num: 0,
     }
-    </>
-  )
-}
+  }
 
-const User = (props) => {
-  const{name, age}  = props
-  return(
-    <React.Fragment>
-      <p>Hi!! I'm {name}</p>
-      <p>my age {age}</p>
-    </React.Fragment>
-  )
-}
+  onClickPlus = () => {
+    this.setState({
+      num: this.state.num + 1
+    })
+  }
+  onClickMinus = () => {
+    this.setState({
+      num: this.state.num - 1
+    })
+  }
 
-User.propTypes = {
-  name: PropTypes.string.isRequired
+  render() {
+    console.log(this.state);
+    return(
+      <>
+        <div>counter:{this.state.num}</div>
+        <button onClick={this.onClickPlus}>+1</button>
+        <button onClick={this.onClickMinus}>-1</button>
+      </>
+    )
+  }
 }
 
 export default App;
